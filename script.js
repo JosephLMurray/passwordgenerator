@@ -45,9 +45,7 @@ var generatePassword = function() {
 //for loop to generate password array and log to page
   for (i=0; i < userChoice; i++) {
     var index = Math.floor(Math.random() * possibleCharacters.length);
-    console.log(possibleCharacters[index]);
-    password += possibleCharacters[index];
-    console.log(password);
+      password += possibleCharacters[index];
   }
 return password;
 };
