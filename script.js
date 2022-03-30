@@ -7,6 +7,7 @@ const uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "
 
 const lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
+let password = "";
 
 //initial prompt with checks for validiy (is number, >=8, <=128). assign value to var
 var generatePassword = function() {
@@ -14,7 +15,9 @@ var generatePassword = function() {
   
   let choice = parseInt(userChoice);
 
-  if (
+  if (userChoice === null) {
+    return password;
+  } else if (
     (isNaN(choice)) ||    
     (userChoice < 8) ||
     (userChoice > 128))
@@ -56,7 +59,7 @@ var generatePassword = function() {
     }
 
   //for loop to generate password array and log to page
-    let password = ""
+ 
     for (i=0; i < userChoice; i++) {
       var index = Math.floor(Math.random() * possibleCharacters.length);
       console.log(possibleCharacters[index]);
