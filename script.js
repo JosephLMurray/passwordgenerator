@@ -11,15 +11,15 @@ const lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "
 //initial prompt with checks for validiy (is number, >=8, <=128). assign value to var
 var generatePassword = function() {
   let userChoice = prompt("Enter a numeric value between 8 and 128 for your password:");
+  
+  let choice = parseInt(userChoice);
+
   if (
-  // (inNan(userChoice)) {
-  //   window.alert = ("That is not a valid selection. Please try again.");
-  //   generatePassword();
-  // } else if (
+    (isNaN(choice)) ||    
     (userChoice < 8) ||
     (userChoice > 128))
     {
-    window.alert = ("That is not a valid selection. Please try again.");
+    window.alert("That is not a valid selection. Please try again.");
     generatePassword();
   } else {
     //prompts with concatenation with a final array length check that returns to beginning if lenth=0
@@ -51,7 +51,7 @@ var generatePassword = function() {
     console.log(possibleCharacters);
 
     if (possibleCharacters.length == 0) {
-      window.alert = ("You must select at least one type of character.");
+      window.alert("You must select at least one type of character.");
       generatePassword();
     }
 
@@ -67,8 +67,6 @@ var generatePassword = function() {
   };
 };
 
-
-writePassword();
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
