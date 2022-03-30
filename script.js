@@ -13,11 +13,7 @@ var generatePassword = function() {
   let choice = parseInt(userChoice);
   let password = "";
 
-  if (
-    (isNaN(choice)) ||    
-    (choice < 8) ||
-    (choice > 128))
-    {
+  if ((isNaN(choice)) || (choice < 8) || (choice > 128)) {
     window.alert("That is not a valid selection. Please try again.");
     return password;
   }
@@ -41,9 +37,9 @@ var generatePassword = function() {
     possibleCharacters = possibleCharacters.concat(lowercase);
   }
 
-  if (possibleCharacters.length == 0) {
+  if (possibleCharacters.length === 0) {
     window.alert("You must select at least one type of character.");
-    generatePassword();
+    return password;
   }
 
 //for loop to generate password array and log to page
