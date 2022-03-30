@@ -7,69 +7,54 @@ const uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "
 
 const lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-let password = "";
-
 //initial prompt with checks for validiy (is number, >=8, <=128). assign value to var
 var generatePassword = function() {
   let userChoice = prompt("Enter a numeric value between 8 and 128 for your password:");
-  
   let choice = parseInt(userChoice);
+  let password = "";
 
-  if (userChoice === null) {
-    return password;
-  } else if (
+  if (
     (isNaN(choice)) ||    
-    (userChoice < 8) ||
-    (userChoice > 128))
+    (choice < 8) ||
+    (choice > 128))
     {
     window.alert("That is not a valid selection. Please try again.");
+    return password;
+  }
+
+  //prompts with concatenation with a final array length check that returns to beginning if lenth=0
+  let possibleCharacters = [];
+
+  if (confirm("Include Special Characters?")) {
+    possibleCharacters = possibleCharacters.concat(specialChars);
+  }
+
+  if (confirm("Include Numbers?")) {
+    possibleCharacters = possibleCharacters.concat(numberChars);
+  } 
+
+  if (confirm("Include Uppercase Letters?")) {
+    possibleCharacters = possibleCharacters.concat(uppercase);
+  }
+
+  if (confirm("Include Lowercase Letters?")) {
+    possibleCharacters = possibleCharacters.concat(lowercase);
+  }
+
+  if (possibleCharacters.length == 0) {
+    window.alert("You must select at least one type of character.");
     generatePassword();
-  } else {
-    //prompts with concatenation with a final array length check that returns to beginning if lenth=0
-    let possibleCharacters = [];
-    console.log(possibleCharacters);
+  }
 
-    let specialSet = confirm("Include Special Characters?");
-    if (specialSet) {
-      possibleCharacters = possibleCharacters.concat(specialChars);
-    }
-    console.log(possibleCharacters);
-
-    let numberSet = confirm("Include Numbers?");
-    if (numberSet) {
-      possibleCharacters = possibleCharacters.concat(numberChars);
-    } 
-    console.log(possibleCharacters);
-
-    let upperSet = confirm("Include Uppercase Letters?");
-    if (upperSet) {
-      possibleCharacters = possibleCharacters.concat(uppercase);
-    }
-    console.log(possibleCharacters);
-
-    let lowerSet = confirm("Include Lowercase Letters?");
-    if (lowerSet) {
-      possibleCharacters = possibleCharacters.concat(lowercase);
-    }
-    console.log(possibleCharacters);
-
-    if (possibleCharacters.length == 0) {
-      window.alert("You must select at least one type of character.");
-      generatePassword();
-    }
-
-  //for loop to generate password array and log to page
- 
-    for (i=0; i < userChoice; i++) {
-      var index = Math.floor(Math.random() * possibleCharacters.length);
-      console.log(possibleCharacters[index]);
-      password += possibleCharacters[index];
-      console.log(password);
-    }
-  return password;
-  };
+//for loop to generate password array and log to page
+  for (i=0; i < userChoice; i++) {
+    var index = Math.floor(Math.random() * possibleCharacters.length);
+    console.log(possibleCharacters[index]);
+    password += possibleCharacters[index];
+    console.log(password);
+  }
+return password;
 };
-
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
@@ -80,9 +65,7 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
