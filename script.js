@@ -1,11 +1,19 @@
 // Arrays for special characters, lowercase letters, uppercase letters, and numbers
-const specialChars = ["!", "@", "#", "$", "%", "^", "&", "*", "-", "=", "+", "(", ")", "{", "}", "[", "]", "?", "/", ">", "<", ".", ",", "~", "|"];
+// const specialChars = ;
 
-const numberChars = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+// const numberChars = ;
 
-const uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+// const uppercase = ;
 
-const lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+// const lowercase = ;
+
+const possibleSet = [
+  ["!", "@", "#", "$", "%", "^", "&", "*", "-", "=", "+", "(", ")", "{", "}", "[", "]", "?", "/", ">", "<", ".", ",", "~", "|"],
+  ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
+  ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+  ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+]
+
 
 //initial prompt with checks for validiy (is number, >=8, <=128). assign value to var
 const generatePassword =() => {
@@ -20,21 +28,16 @@ const generatePassword =() => {
 
   //prompts with concatenation with a final array length check that returns to beginning if lenth=0
   let possibleCharacters = [];
+  let specialChars = confirm("Include Special Characters?")
+  let numberChars = confirm("Include Numbers?")
+  let uppercase = confirm("Include Uppercase Letters?")
+  let lowercase = confirm("Include Lowercase Letters?")
+  let userResponse = [specialChars, numberChars, uppercase, lowercase]
 
-  if (confirm("Include Special Characters?")) {
-    possibleCharacters = possibleCharacters.concat(specialChars);
-  }
-
-  if (confirm("Include Numbers?")) {
-    possibleCharacters = possibleCharacters.concat(numberChars);
-  } 
-
-  if (confirm("Include Uppercase Letters?")) {
-    possibleCharacters = possibleCharacters.concat(uppercase);
-  }
-
-  if (confirm("Include Lowercase Letters?")) {
-    possibleCharacters = possibleCharacters.concat(lowercase);
+  for (i=0;i < 4; i++) {
+    if (userResponse[i]) {
+      possibleCharacters = possibleCharacters.concat(possibleSet[i]);
+    }
   }
 
   if (possibleCharacters.length === 0) {
