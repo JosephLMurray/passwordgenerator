@@ -8,7 +8,7 @@ const uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "
 const lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
 //initial prompt with checks for validiy (is number, >=8, <=128). assign value to var
-var generatePassword = function() {
+const generatePassword =() => {
   let userChoice = prompt("Enter a numeric value between 8 and 128 for your password:");
   let choice = parseInt(userChoice);
   let password = "";
